@@ -10,7 +10,7 @@ router.get('/books/:id', (req, res) => {
     const { id } = req.params;
 
     // Find the book by ID
-    const book = books.find(book => book.id === parseInt(id));
+    const book = books.find(book => book.id === parseInt(id));//kod chatgpt
 
     if (book) {
         res.status(200).json(book);
@@ -23,7 +23,7 @@ router.get('/books/:id', (req, res) => {
     const { id } = req.params;   
     for (let i = 0; i < books.length; i++) {
         if (books[i].id === parseInt(id)) { 
-            return res.status(200).json(books[i]); 
+            return res.status(200).json(books[i]); //mój kod
         }
     }
     res.status(404).json({ error: 'Book not found' });
