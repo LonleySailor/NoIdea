@@ -16,8 +16,7 @@ coverage/
 
 # Environment variables
 .env
-.js
-
+*.js
 # Editor/IDE specific files
 .vscode/
 .idea/
