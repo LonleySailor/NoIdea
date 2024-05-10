@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { books } from './books.assets';
+import { UserInformation, books } from './books.assets';
 
 export const findBookById = (req: Request, res: Response) => {
     const { id } = req.params;
@@ -12,8 +12,6 @@ export const findBookById = (req: Request, res: Response) => {
 };
 
 export const findBookByInfo = (req: Request, res: Response) => {
-   // const { info } = req.params.info;
-    // const givenInfo = givenInfoInParams.toLowerCase();
      const givenInfo = req.params.info.toLowerCase();
    if (!givenInfo) {
        return res.status(400).json({ error: "Missing search parameter" });
@@ -27,6 +25,15 @@ export const findBookByInfo = (req: Request, res: Response) => {
             return res.status(200).json(books[i]);
         }
     }
-
     return res.status(404).json({ error: "Not Found" });
+};
+export const userAuthenication =(req :Request,res: Response)=>{
+   const sentApiKey=req.body.apiKey;
+   const foundUserInfo = UserInformation.get(sentApiKey);
+   if(foundUserInfo){
+    return res.status(200).json("Logged in as: "+foundUserInfo.user);
+   }
+   else{
+    return res.status(404).json({error:'Incorrect apiKey'});   
+   }
 };

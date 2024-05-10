@@ -4,3 +4,9 @@ export interface Book {
     author: string;
     genre: string;
 }
+
+export interface LoginInfo {
+    user: string;
+    apiKey: string;
+}
+

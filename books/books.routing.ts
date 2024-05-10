@@ -1,15 +1,7 @@
 import express from 'express';
-import {findBookById, findBookByInfo } from './books.controller';
-import { constants } from 'buffer';
+import {findBookById, findBookByInfo, userAuthenication } from './books.controller';
 const router = express.Router();
-/*
-router.get('/books', (req, res) => {
-        res.json(books);
-});
-*/
-
 router.get('/:id', findBookById);
 router.get('/search/:info',findBookByInfo);
-
-
+router.post('/signin',userAuthenication);
 export default router;
