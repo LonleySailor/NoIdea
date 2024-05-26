@@ -1,7 +1,7 @@
 import express from 'express';
-import {findBookById, findBookByInfo, userAuthenication } from './books.controller';
+import { apiKeyMiddleware, findBookById, findBookByInfo, ifAPIcorrect } from './books.controller';
 const router = express.Router();
+router.get('/testapikey', apiKeyMiddleware, ifAPIcorrect);
 router.get('/:id', findBookById);
-router.get('/search/:info',findBookByInfo);
-router.post('/signin',userAuthenication);
+router.get('/search/:info', findBookByInfo);
 export default router;
